@@ -171,8 +171,9 @@ plist_t tss_send_request(plist_t tss_request) {
 		curl_easy_setopt(handle, CURLOPT_POSTFIELDS, request);
 		curl_easy_setopt(handle, CURLOPT_USERAGENT, "InetURL/1.0");
 		curl_easy_setopt(handle, CURLOPT_POSTFIELDSIZE, strlen(request));
-		curl_easy_setopt(handle, CURLOPT_URL, "http://cydia.saurik.com/TSS/controller?action=2");
-		//curl_easy_setopt(handle, CURLOPT_URL, "http://gs.apple.com/TSS/controller?action=2");
+		//curl_easy_setopt(handle, CURLOPT_URL, "http://cydia.saurik.com/TSS/controller?action=2");
+                // seems apple blocks the whole class now, so this gets useless and should be in your hosts anyway
+		curl_easy_setopt(handle, CURLOPT_URL, "http://gs.apple.com/TSS/controller?action=2");
 
 		curl_easy_perform(handle);
 		curl_slist_free_all(header);

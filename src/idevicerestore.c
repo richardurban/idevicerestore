@@ -363,9 +363,14 @@ int check_device(struct idevicerestore_client_t* client) {
 			break;
 
 		case CPID_IPAD1G:
-			device = DEVICE_IPAD1G;
-			break;
-
+                        if (get_bdid(client, &bdid) < 0) {
+                                error("ERROR: Unable to get device BDID\n");
+                                break;
+                        }
+                        if ( bdid == BDID_IPHONE4 ) { device = DEVICE_IPHONE4; }
+                        else if ( bdid == BDID_IPAD1G ) { device = DEVICE_IPAD1G; }
+                        break;
+		
 		default:
 			device = DEVICE_UNKNOWN;
 			break;
